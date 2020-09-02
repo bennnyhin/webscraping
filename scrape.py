@@ -9,22 +9,20 @@ uClient = uReq(my_url)
 page_html = uClient.read()
 uClient.close()
 
-
+#create create list of containers which have information about product
 page_soup = soup(page_html, "html.parser")
 containers = page_soup.findAll("div", {"class":"a-section a-spacing-medium"})
 
-containers2 = page_soup.findAll("div", {"class": "sg-col-4-of-24 sg-col-4-of-12 sg-col-4-of-36 s-result-item s-asin sg-col-4-of-28 sg-col-4-of-16 sg-col sg-col-4-of-20 sg-col-4-of-32"})
-container2 = containers2[0]
-link = container2.finalAll("a", {"class": "a-link-normal"})
-print(link)
-
-
 container = containers[0]
+
+rating_container = container.findAll("span", {"class": "a-size-base"})
+number_ratings = rating_container[0].text
+print(number_ratings)
+
+# containers2 = page_soup.findAll("div", {"class": "sg-col-4-of-24 sg-col-4-of-12 sg-col-4-of-36 s-result-item s-asin sg-col-4-of-28 sg-col-4-of-16 sg-col sg-col-4-of-20 sg-col-4-of-32"})
+# container2 = containers2[0]
+# link = container2.finalAll("a", {"class": "a-link-normal"})
+# print(link)
 
 # href = container.findAll("a", {"class": "a-link-normal s-no-outline"})
 # print(href)
-
-
-# rating_container = container.findAll("span", {"class": "a-size-base"})
-# number_ratings = rating_container[0].text
-
